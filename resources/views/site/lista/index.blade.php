@@ -9,6 +9,8 @@
     <title>Document</title>
 </head>
 <body>
+
+</div>
     <div id="container">
     <h2>Produtos</h2>
 <div class="table-wrapper">
@@ -30,8 +32,12 @@
                 <td>{{$produto->id}}</td>
                 <td>{{$produto->nome}}</td>
                 <td>{{$produto->preco}}</td>
-                <td><button onclick=showDiv('{{$produto->id}}')>Editar
-                    </button><button onclick="">Excluir</button></td>
+                <td><button onclick=showDiv('{{$produto->id}}')>Editar</button>
+                <form action="products/{{$produto->id}}" method="POST">
+                    @csrf
+                    @method("delete")
+                    <button type="submit">Excluir</button></td>
+                 </form>
 
             </tr>    
             @endforeach
@@ -46,7 +52,10 @@
 </div>
 <div id="table-edit">
     
-    <form action="" method="GET">
+    <form id = "formEdit"  method="POST">
+        @csrf
+        @method("PUT")
+    <input id = "inputId" type="hidden" name="id" value="">
         <div class="inputNome">
             <span>Nome</span>
             <input id = "inputNome" type="text" name="nome" value="">    
@@ -54,7 +63,7 @@
         <div class="inputPreco">
             <span>Preço</span>
             <input id ="inputPreco" type="number" name="preco" value="">
-            <button type="button">Editar</button>
+            <button id ="btnEdit" type="submit">Editar</button>
         </div>
         
     </form>    

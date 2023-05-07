@@ -1,5 +1,6 @@
 <div class="form">
-    <form action="" method="get">
+    <form action="{{route('products.store')}}" method="POST">
+        @csrf
         <div class="inputNome">
             <span>Nome</span>
             
@@ -10,8 +11,8 @@
             <input type="number" name="preco">
         </div>
 
-        <button type="submit">Cadastrar</button>
-       <a href="{{route('listar')}}"><button type="button">Listar</button></a> 
+        <button type="">Cadastrar</button>
+       <a href="{{route('products.index')}}"><button type="button">Listar</button></a> 
 
     </form>
 

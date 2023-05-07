@@ -26,20 +26,20 @@ class ProductController extends Controller
   
     public function create(Request $request)
 
-    {
-       
+    {   
+        return view("site.form.index");  
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+    {   
         Product::create($request->all());
-        
-         
-        return redirect()->route('products.index')
+        return redirect()->route('products.create')
                         ->with('success','Product created successfully.');
+        
+        
     }
 
     /**
@@ -72,8 +72,9 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        //
+    {   echo('oi');
+        Product::find($id)->update($request->all());
+        
     }
 
 
@@ -82,7 +83,10 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        
+        $produto = Product::find($id)->delete($id);
+        return back()->with('msg', 'Produto deletado com sucesso');
+
     }
     public function lista(){
         
