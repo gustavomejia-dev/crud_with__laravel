@@ -70,6 +70,7 @@ h2{
     position: absolute;
     transform: translateX(-50%);
     border: 3px solid gray;
+    transition: ease-in;
 
 
     
@@ -90,13 +91,23 @@ h2{
     text-align: center;
    
 }
-#table-edit button{
+#table-edit #btnEdit{
     width: 60px;
     border-radius: 4px;
     color: white;
     border: none;
     background-color: #56a5ff;
     height: 30px;
+    cursor: pointer;
+}
+#table-edit #btnCancel{
+    width: 60px;
+    border-radius: 4px;
+    color: white;
+    border: none;
+    background-color: #f54b3f;
+    height: 30px;
+    cursor: pointer;
 }
 /* Responsive */
 

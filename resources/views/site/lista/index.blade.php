@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link rel="stylesheet" href="{{asset('/css/list.css')}}">
     
     <title>Document</title>
@@ -13,7 +14,7 @@
 </div>
     <div id="container">
     <h2>Produtos</h2>
-<div class="table-wrapper">
+<div class="table-wrapper" id ="table-wrapper">
     <table class="fl-table">
         <thead>
         <tr>
@@ -24,11 +25,11 @@
 
         </tr>
         </thead>
-        <tbody>
+        <tbody id ='bodyTable'>
             
             
-            @foreach ($produtos as $produto)
-            <tr>
+            {{-- @foreach ($produtos as $produto)
+            <tr class = "line-table">
                 <td>{{$produto->id}}</td>
                 <td>{{$produto->nome}}</td>
                 <td>{{$produto->preco}}</td>
@@ -40,7 +41,7 @@
                  </form>
 
             </tr>    
-            @endforeach
+            @endforeach --}}
             
 
             
@@ -63,7 +64,8 @@
         <div class="inputPreco">
             <span>Preço</span>
             <input id ="inputPreco" type="number" name="preco" value="">
-            <button id ="btnEdit" type="submit">Editar</button>
+            <button id ="btnEdit"  type="submit">Editar</button>
+            <button id ="btnCancel" onclick=exitModal()  type="submit">Cancelar</button>
         </div>
         
     </form>    

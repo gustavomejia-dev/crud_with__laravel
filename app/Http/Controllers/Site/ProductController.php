@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Ramsey\Uuid\Type\Integer;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
 
 class ProductController extends Controller
 {
@@ -71,9 +72,12 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {   echo('oi');
-        Product::find($id)->update($request->all());
+    public function update(Request $request)
+    {//    Request $request, 
+        // echo "<pre>"; print_r($request->all());echo "</pre>";die();
+        $updateProd = Product::find($request->id)->update($request->all());
+        $msg = $updateProd ? 'sucesso' : 'error';
+        return response()->json($msg);
         
     }
 
@@ -82,15 +86,18 @@ class ProductController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-    {
+    {   
         
-        $produto = Product::find($id)->delete($id);
-        return back()->with('msg', 'Produto deletado com sucesso');
-
+        $deleteProd = Product::find($id)->delete($id);
+        $msg = $deleteProd ? 'sucesso' : 'error';
+        return response()->json($msg);
     }
-    public function lista(){
-        
-        
+    public function listar(){
+        $produtos = Product::all();
+        $produtos = $produtos->toJson();
+        return $produtos;
+        // return view('site.lista.index', ['produtos' => $produtos]);
+        // return view('site.lista.index', ['produtos' => $produtos]);
        
     }
 }

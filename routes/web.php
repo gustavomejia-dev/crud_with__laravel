@@ -22,4 +22,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::resource('products', ProductController::class);
-Route::get('produtos/lista', [ProductController::class, 'lista'])->name('listar');
+Route::post('produtos/listar',[ProductController::class, 'listar']);
+// Route::get('/', function () {
+//     return 'Minha Primeira rota com Laravel';
+// });
+
+route::post('produtos/deletar',[ProductController::class, 'delete']);
